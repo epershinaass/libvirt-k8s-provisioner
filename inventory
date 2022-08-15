@@ -1,2 +1,2 @@
 [vm_host]
-localhost ansible_connection=local
+91.206.15.220
