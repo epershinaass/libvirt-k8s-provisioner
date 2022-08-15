@@ -24,7 +24,7 @@ k8s:
 
   network:
     network_cidr: 192.168.200.0/24
-    domain: k8s.test
+    domain: k8s.cluster
     additional_san: ""
     pod_cidr: 10.20.0.0/16
     service_cidr: 10.110.0.0/16
