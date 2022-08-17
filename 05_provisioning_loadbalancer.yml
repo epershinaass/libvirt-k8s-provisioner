@@ -20,6 +20,7 @@
             state: present
           become: true
           register: output_loadbalancer
+          environment: "{{ proxy_env }}" # Use if terraform site blocked
 
         - name: Add loadbalancer to inventory
           ansible.builtin.add_host:

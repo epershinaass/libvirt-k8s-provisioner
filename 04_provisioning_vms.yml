@@ -22,6 +22,7 @@
         state: present
       become: true
       register: output_masters
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: Ensure worker VMs are in place
       community.general.terraform:
@@ -43,6 +44,7 @@
         state: present
       become: true
       register: output_workers
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: Ensure Rook dedicated worker VMs are in place
       community.general.terraform:
@@ -65,11 +67,12 @@
       register: output_workers_rook
       become: true
       when: rook_ceph.install_rook
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: Add masters to given group
       ansible.builtin.add_host:
         hostname: '{{ k8s.cluster_name }}-master-{{ item }}.{{ k8s.network.domain }}'
-        ansible_ssh_private_key_file: "{{ playbook_dir }}//id_rsa_{{ k8s.cluster_name }}"
+        ansible_ssh_private_key_file: "{{ playbook_dir }}/id_rsa_{{ k8s.cluster_name }}"
         ansible_user: kube
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
         groups:
@@ -81,7 +84,7 @@
     - name: Add workers to given group
       ansible.builtin.add_host:
         hostname: '{{ k8s.cluster_name }}-worker-{{ item }}.{{ k8s.network.domain }}'
-        ansible_ssh_private_key_file: "{{ playbook_dir }}//id_rsa_{{ k8s.cluster_name }}"
+        ansible_ssh_private_key_file: "{{ playbook_dir }}/id_rsa_{{ k8s.cluster_name }}"
         ansible_user: kube
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
         groups:

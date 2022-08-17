@@ -13,6 +13,7 @@
           cluster_name: "{{ k8s.cluster_name }}"
         force_init: true
         state: present
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: qemu SELinux fix for running images in different folders
       block:

@@ -20,6 +20,7 @@
         - not rook_ceph.install_rook
         - k8s.control_plane.vms > 1
       become: true
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: Destroy cluster VM
       community.general.terraform:
@@ -33,6 +34,7 @@
         - not rook_ceph.install_rook
         - k8s.control_plane.vms == 1
       become: true
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: Destroy cluster VM
       community.general.terraform:
@@ -46,6 +48,7 @@
         - loadbalancer
       when: rook_ceph.install_rook
       become: true
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: Destroy libvirt pool and network 
       community.general.terraform:
@@ -53,6 +56,7 @@
         project_path: "{{ workspace_directory.base_path }}/clusters/{{ k8s.cluster_name }}/libvirt-resources"
         state: absent
       become: true
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: Ensure images are deleted
       ansible.builtin.file:

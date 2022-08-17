@@ -54,3 +54,4 @@
           kubeconfig: "{{ workspace_directory.base_path }}/clusters/{{ k8s.cluster_name }}/admin.kubeconfig"
           wait: yes
           apply: yes
+      when: metallb.install_metallb
