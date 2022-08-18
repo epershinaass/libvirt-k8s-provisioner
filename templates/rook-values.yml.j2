@@ -8,7 +8,7 @@ cephClusterSpec:
   mon:
     count: {{ rook_ceph.rook_cluster_size }}
   mgr:
-    count: {{ rook_ceph.rook_cluster_size }}
+    count: 1
   resources:
     mgr:
       limits:
