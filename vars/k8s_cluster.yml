@@ -36,7 +36,7 @@ k8s:
 rook_ceph:
   install_rook: true
   volume_size: 70
-  rook_cluster_size: 3
+  rook_cluster_size: 2
 
 # Ingress controller configuration [nginx/haproxy/contour]
 
