@@ -46,6 +46,7 @@
         dest: /usr/bin/
         mode: 0755
         remote_src: yes
+      environment: "{{ proxy_env }}" # Use if terraform site blocked
 
     - name: Virtualization services are enabled
       ansible.builtin.service:
