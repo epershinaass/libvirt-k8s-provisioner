@@ -1,7 +1,7 @@
 # General configuration
 k8s:
   cluster_name: k8s-cluster
-  cluster_os: CentOS
+  cluster_os: Ubuntu
   cluster_version: "1.24"
   container_runtime: crio
   master_schedulable: false
@@ -18,7 +18,7 @@ k8s:
     vcpu: 3
     mem: 7
     vms: 3
-    disk: 40
+    disk: 70
 
 # Network configuration
 
@@ -35,8 +35,8 @@ k8s:
 # Rook configuration
 rook_ceph:
   install_rook: true
-  volume_size: 70
-  rook_cluster_size: 1
+  volume_size: 30
+  rook_cluster_size: 3
 
 # Ingress controller configuration [nginx/haproxy/contour]
 
